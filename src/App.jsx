@@ -3,6 +3,7 @@ import {
     Routes,
     Route,
     useParams,
+    useNavigate
 } from "react-router-dom";
 import { Login } from './pages/login/Login'
 import { ShopCar } from './pages/shop-car/ShopCar'
@@ -12,11 +13,13 @@ import { useEffect, useState } from "react";
 export const App = () => {
 
     const [isLogin, setIsLogin] = useState(false)
-    const parametros = useParams()
+    const [previousPath, setPreviousPath] = useState(null);
 
-    useEffect(() => {
-        console.log(parametros);
-    }, [])
+    const handleLogin = () => {
+        setIsLogin(true);
+        // Redirige a la ruta originalmente solicitada si existe, de lo contrario, a la ruta predeterminada
+        setPreviousPath(path);
+    };
 
     const miFuncion = (params) => {
         console.log("desde el padre:", params);
